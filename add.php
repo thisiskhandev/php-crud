@@ -1,4 +1,8 @@
-<?php include 'header.php'; ?>
+<?php include_once 'header.php';
+include_once 'config.php';
+$sql = "SELECT * FROM studentclass";
+$result = mysqli_query($conn, $sql);
+?>
 <div id="main-content">
     <h2>Add New Record</h2>
     <form class="post-form" action="savedata.php" method="post">
@@ -12,28 +16,34 @@
         </div>
         <div class="form-group">
             <label>Class</label>
-            <select name="class">
-                <option value="" selected disabled>Select Class</option>
-                <?php
-                include 'config.php';
+            <!-- Testing -->
+            <?php if (mysqli_num_rows($result) > 0) { ?>
+                <select name="class">
+                    <option value="" selected disabled>Select Class</option>
+                    <?php
 
-                $sql = "SELECT * FROM studentclass";
-                $result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
-
-                while($row = mysqli_fetch_assoc($result)){
-                ?>
-                <option value="<?php echo $row['cid']; ?>"><?php echo $row['cname']; ?></option>
-
-              <?php } ?>
-            </select>
+                    // print_r(mysqli_fetch_assoc($result));
+                    print_r(mysqli_num_rows($result));
+                    foreach ($result as $row) {
+                        // print_r($row);
+                    ?>
+                        <option value=<?php echo $row['cid'] ?>><?php echo $row['cname'] ?></option>
+                    <?php
+                    }
+                    ?>
+                </select>
+            <?php } else {
+                echo "<h3>No Classes found in database!</h3>" . "<p>Add class first in db</p>";
+            } ?>
         </div>
         <div class="form-group">
             <label>Phone</label>
             <input type="text" name="sphone" />
         </div>
-        <input class="submit" type="submit" value="Save"  />
+        <input class="submit" type="submit" value="Save" />
     </form>
 </div>
 </div>
 </body>
+
 </html>

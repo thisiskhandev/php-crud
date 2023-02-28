@@ -12,7 +12,7 @@
   // print_r($result);
   // print_r(mysqli_fetch_assoc($result));
   echo "</pre>";
-  
+
   if (mysqli_num_rows($result) > 0) {
     // foreach ($result as $keyss) {
     //   print_r($keyss);
@@ -31,14 +31,14 @@
       <tbody>
         <?php
         // while ($row = mysqli_fetch_assoc($result)) {
-        foreach ($result as $row) {
+        foreach ($result as $keys) {
         ?>
           <tr>
-            <td><?php echo $row['sid'] ?></td>
-            <td><?php echo $row['sname'] ?></td>
-            <td><?php echo $row['saddress'] ?></td>
-            <td><?php echo $row['cname'] ?></td>
-            <td><?php echo $row['sphone'] ?></td>
+            <td><?php echo $keys['sid'] ?></td>
+            <td><?php echo $keys['sname'] ?></td>
+            <td><?php echo $keys['saddress'] ?></td>
+            <td><?php echo $keys['cname'] ?></td>
+            <td><?php echo $keys['sphone'] ?></td>
             <td>
               <a href="#">Edit</a>
               <a href="#">Delete</a>
