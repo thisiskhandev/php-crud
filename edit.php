@@ -44,7 +44,7 @@ if (!empty($_GET['id'])) {
         </div>
         <div class="form-group">
           <label>Phone</label>
-          <input type="text" name="sphone" value="<?php echo $keys['sphone'] ?>" />
+          <input type="text" minlength="0" maxlength="10" name="sphone" value="<?php echo $keys['sphone'] ?>" />
         </div>
         <input class="submit" type="submit" value="Update" />
       </form>

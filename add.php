@@ -38,7 +38,7 @@ $result = mysqli_query($conn, $sql);
         </div>
         <div class="form-group">
             <label>Phone</label>
-            <input type="text" name="sphone" />
+            <input type="text" minlength="0" maxlength="10" name="sphone" />
         </div>
         <input class="submit" type="submit" value="Save" />
     </form>
