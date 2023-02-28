@@ -40,7 +40,7 @@
             <td><?php echo $keys['cname'] ?></td>
             <td><?php echo $keys['sphone'] ?></td>
             <td>
-              <a href="#">Edit</a>
+              <a href="edit.php?id=<?php echo $keys['sid'] ?>">Edit</a>
               <a href="#">Delete</a>
             </td>
           </tr>

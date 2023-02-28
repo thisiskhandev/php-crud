@@ -1,17 +1,15 @@
 <?php
-$stu_id = $_POST['sid'];
-$stu_name = $_POST['sname'];
-$stu_address = $_POST['saddress'];
-$stu_class = $_POST['sclass'];
-$stu_phone = $_POST['sphone'];
+include_once "config.php";
 
-include 'config.php';
+$std_id = $_POST['sid'];
+$std_name = $_POST['sname'];
+$std_add = $_POST['saddress'];
+$std_class = $_POST['cid'];
+$std_phone = $_POST['sphone'];
 
-$sql = "UPDATE student SET sname = '{$stu_name}', saddress = '{$stu_address}',sclass = '{$stu_class}', sphone = '{$stu_phone}' WHERE sid = {$stu_id}";
-$result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
+$sql = "UPDATE student SET sname = '{$std_name}', saddress = '{$std_add}', sclass = '{$std_class}', sphone = '{$std_phone}' WHERE student.sid = '{$std_id}'";
 
-header("Location: http://localhost/crud/index.php");
+$query = mysqli_query($conn, $sql) or die("<h3>Connection is not establish check db connection</h3>");
 
+header("location: /crud");
 mysqli_close($conn);
-
-?>
