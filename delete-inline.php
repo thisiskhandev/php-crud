@@ -1,14 +1,12 @@
 <?php
+include_once "config.php";
 
-$stu_id = $_GET['id'];
+$stdID = $_GET['id'];
 
-include 'config.php';
+$sql = "DELETE FROM student WHERE student.sid = '{$stdID}'";
 
-$sql = "DELETE FROM student WHERE sid = {$stu_id}";
-$result = mysqli_query($conn, $sql) or die("Query Unsuccessful.");
+$query = mysqli_query($conn, $sql) or die("<h3>Can't Delete this user</h3>");
 
-header("Location: http://localhost/crud/index.php");
+header("location: /crud");
 
 mysqli_close($conn);
-
-?>

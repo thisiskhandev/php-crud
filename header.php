@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>CRUD</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        setTimeout(function() {
+            document.querySelector(".not_found").style.display = "none";
+        }, 5000);
+
+        function InpNotEmptyHandler() {
+            var valueInp = document.querySelectorAll('input[type="text"].inpEmpty')[0].value;
+            var submit = document.querySelectorAll('input[type="submit"][name="confirmIdDelete"]')[0];
+
+            if (valueInp.length > 0) {
+                submit.classList.add("open_to_submit");
+            } else {
+                submit.classList.remove("open_to_submit");
+            }
+        }
+    </script>
 </head>
+
 <body>
     <div id="wrapper">
         <div id="header">

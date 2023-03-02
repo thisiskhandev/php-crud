@@ -41,7 +41,7 @@
             <td><?php echo $keys['sphone'] ?></td>
             <td>
               <a href="edit.php?id=<?php echo $keys['sid'] ?>">Edit</a>
-              <a href="#">Delete</a>
+              <a href="delete-inline.php?id=<?php echo $keys['sid']?>">Delete</a>
             </td>
           </tr>
         <?php } ?>
