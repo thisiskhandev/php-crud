@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script>
         setTimeout(function() {
-            document.querySelector(".not_found").style.display = "none";
+            document.querySelector(".not_found") ? document.querySelector(".not_found").style.display = "none" : "";
         }, 5000);
 
         function InpNotEmptyHandler() {
