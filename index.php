@@ -19,7 +19,7 @@
     // }
   ?>
 
-    <form action="delete-selected.php" method="post">
+    <form action="delete-selected.php" method="post" id="studentData">
       <table cellpadding="7px">
         <thead>
           <th><input type="checkbox" name="" id="mainCheck"></th>
@@ -62,54 +62,56 @@
 </div>
 
 <script>
-  var InpCheckMain = document.getElementById("mainCheck");
-  var btnDeleteAll = document.querySelector('input[name="deleteAll"]');
-  var allCheckDelete = document.querySelectorAll('.delete_checkbox');
+  let studentData = document.getElementById("studentData");
+  let InpCheckMain = document.getElementById("mainCheck");
+  let btnDeleteAll = document.querySelector('input[name="deleteAll"]');
+  let allCheckDelete = document.querySelectorAll('.delete_checkbox');
+  if (studentData) {
+    InpCheckMain.addEventListener("change", function() {
+      InpCheckMain.checked ? btnDeleteAll.classList.remove("disabled") : btnDeleteAll.classList.add("disabled");
+      if (InpCheckMain.checked) {
+        allCheckDelete.forEach((elem, ind) => {
+          if (elem.checked === false) {
+            elem.checked = true;
+          }
+        });
+      } else {
+        allCheckDelete.forEach((elem, ind) => {
+          elem.checked = false;
+        });
+      }
+    });
 
-  InpCheckMain.addEventListener("change", function() {
-    InpCheckMain.checked ? btnDeleteAll.classList.remove("disabled") : btnDeleteAll.classList.add("disabled");
-    if (InpCheckMain.checked) {
-      allCheckDelete.forEach((elem, ind) => {
-        if (elem.checked === false) {
-          elem.checked = true;
+    let checkBoxCount = 0;
+    allCheckDelete.forEach((elem, ind) => {
+      elem.addEventListener('change', function() {
+        // if (elem.checked) {
+        //   btnDeleteAll.classList.remove("disabled");
+        //   console.log(elem.length);
+        // }
+        // else if (elem.checked === false) {
+        //   btnDeleteAll.classList.add("disabled");
+        // }
+        if (elem.checked) {
+          checkBoxCount++;
+        } else {
+          checkBoxCount--;
+          InpCheckMain.checked = false;
         }
+        if (checkBoxCount > 0) {
+          btnDeleteAll.classList.remove("disabled");
+        } else {
+          btnDeleteAll.classList.add("disabled");
+        }
+        console.log("Total check count: " + checkBoxCount);
       });
-    } else {
-      allCheckDelete.forEach((elem, ind) => {
-        elem.checked = false;
-      });
-    }
-  });
-
-  var checkBoxCount = 0;
-  allCheckDelete.forEach((elem, ind) => {
-    elem.addEventListener('change', function() {
-      // if (elem.checked) {
-      //   btnDeleteAll.classList.remove("disabled");
-      //   console.log(elem.length);
-      // }
-      // else if (elem.checked === false) {
+      // if (elem.checked === false) {
       //   btnDeleteAll.classList.add("disabled");
       // }
-      if (elem.checked) {
-        checkBoxCount++;
-      } else {
-        checkBoxCount--;
-        InpCheckMain.checked = false;
-      }
-      if (checkBoxCount > 0) {
-        btnDeleteAll.classList.remove("disabled");
-      } else {
-        btnDeleteAll.classList.add("disabled");
-      }
-      console.log("Total check count: " + checkBoxCount);
-    });
-    // if (elem.checked === false) {
-    //   btnDeleteAll.classList.add("disabled");
-    // }
 
-    // console.log(elem);
-  });
+      // console.log(elem);
+    });
+  }
 </script>
 
 </body>
