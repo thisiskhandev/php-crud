@@ -218,7 +218,6 @@ input.submit[name="confirmIdDelete"]:not(.open_to_submit) {
 
 input[name="deleteAll"] {
   transition: 0.3s;
-  visibility: hidden;
   text-align: center;
   margin: auto;
   display: block;
@@ -231,6 +230,13 @@ input[name="deleteAll"] {
   padding: 12px 17px;
   font-weight: bold;
   cursor: pointer;
+}
+
+input[name="deleteAll"].disabled {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.3s;
 }
 
 input[type="submit"][name="deleteAll"]:hover {
