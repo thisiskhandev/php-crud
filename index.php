@@ -21,6 +21,7 @@
 
     <table cellpadding="7px">
       <thead>
+        <th><input type="checkbox" name="" id="mainCheck"></th>
         <th>Id</th>
         <th>Name</th>
         <th>Address</th>
@@ -34,6 +35,7 @@
         foreach ($result as $keys) {
         ?>
           <tr>
+            <td style="padding: 0; text-align: center;"><input type="checkbox" name="" id=""></td>
             <td><?php echo $keys['sid'] ?></td>
             <td><?php echo $keys['sname'] ?></td>
             <td><?php echo $keys['saddress'] ?></td>
@@ -41,12 +43,16 @@
             <td><?php echo $keys['sphone'] ?></td>
             <td>
               <a href="edit.php?id=<?php echo $keys['sid'] ?>">Edit</a>
-              <a href="delete-inline.php?id=<?php echo $keys['sid']?>">Delete</a>
+              <a href="delete-inline.php?id=<?php echo $keys['sid'] ?>">Delete</a>
             </td>
           </tr>
         <?php } ?>
       </tbody>
     </table>
+
+    <form class="" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+      <input type="submit" name="deleteAll" value="Delete All">
+    </form>
 
   <?php } else {
     echo "<h2>No record found!</h2>";
@@ -54,6 +60,16 @@
   } ?>
 </div>
 </div>
+<script>
+  var InpCheckMain = document.getElementById("mainCheck");
+  var deleteAllBtn = document.querySelector('input[name="deleteAll"]');
+  InpCheckMain.checked ? deleteAllBtn.style.visibility = "visible" && console.log("working!") : deleteAllBtn.style.visibility = "hidden";
+  if (InpCheckMain.checked) {
+    console.log("working");
+  }
+</script>
 </body>
 
 </html>
+
+<!-- document.getElementById("mainCheck").checked -->

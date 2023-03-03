@@ -6,7 +6,7 @@ include_once "config.php";
   <form class="post-form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
     <div class="form-group">
       <label>Id</label>
-      <input type="text" name="sid" />
+      <input type="number" name="sid" />
     </div>
     <input class="submit" type="submit" name="showbtn" value="Show" />
   </form>
