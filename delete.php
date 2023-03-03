@@ -83,6 +83,54 @@ include_once "config.php";
         <input class="submit" type="submit" name="confirmNDelete" value="Delete" />
     </form>
 
+    <?php
+    if (isset($_POST['confirmNDelete'])) {
+        $stdName = $_POST['sname'];
+        // echo $stdName;
+        $sql = "SELECT * FROM student WHERE sname LIKE '{$stdName}%'";
+        $query = mysqli_query($conn, $sql) or die("Not found name in DB died!");
+        $result = mysqli_fetch_assoc($query);
+        // print_r($result);
+        if (isset($query) > 0) {
+            foreach ($query as $keys) {
+    ?>
+                <div class="std_details">
+                    <h3>Details</h3>
+                    <div class="flex_box">
+                        <article>
+                            <h4><strong>ID: </strong> <span><?php echo $keys['sid'] ?></span></h4>
+                            <h4><strong>Name:</strong> <span><?php echo $keys['sname'] ?></span></h4>
+                            <h4><strong>Adress: </strong> <span><?php echo $keys['saddress'] ?></span></h4>
+                            <!-- Student Class -->
+                            <?php
+                            $sClass = $keys['sclass'];
+                            $sqlClass = "SELECT * FROM studentclass WHERE studentclass.cid = '{$sClass}'";
+                            $resultClass = mysqli_query($conn, $sqlClass) or die("Class not match or found!");
+                            if (mysqli_num_rows($resultClass) > 0) {
+                                // print_r(mysqli_fetch_assoc($resultClass));
+                                foreach ($resultClass as $classNameKey) {
+                            ?>
+                                    <h4><strong>Class: </strong> <span><?php echo $classNameKey['cname'] ?></span></h4>
+                            <?php
+                                }
+                            }
+                            ?>
+                            <h4><strong>Phone: </strong> <span><?php echo $keys['sphone'] ?></span></h4>
+                        </article>
+                        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+                            <input type="hidden" name="sid" value="<?php echo $keys['sid'] ?>">
+                            <button class="btn" type="submit" name="deleteCurrentUser">Delete Student</button>
+                        </form>
+                    </div>
+                </div>
+    <?php
+            }
+        } else {
+            echo "<p style='text-align: center; color: red;' class='not_found'>No Student found in our record!</p>";
+        }
+    }
+    ?>
+
 </div>
 </div>
 </body>
