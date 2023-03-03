@@ -9,8 +9,8 @@ if (isset($_POST['deleteAll'])) {
             // echo $checkboxes . "<br>";
             $sql = "DELETE FROM student WHERE sid = {$checkboxes}";
             mysqli_query($conn, $sql) or die("Error while deleting multiple data");
-            header("location: /crud");
         }
+        header("location: /crud");
     } else {
         echo "no checkboxes are checked!";
     }
